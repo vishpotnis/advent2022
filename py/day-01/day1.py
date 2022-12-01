@@ -7,9 +7,9 @@ def main():
 
     top_calories = get_top3_calories(input_fname)
     print(f"Top 3 calories:")
-    for i in range(3):
+    for i in range(len(top_calories)):
         print(f"{i+1}: {top_calories[i]}")
-    print(f"Sum {sum(top_calories[0:3])}")
+    print(f"Sum {sum(top_calories)}")
     
 
 
@@ -44,7 +44,7 @@ def get_top3_calories(input_fname):
                 current_calories += int(line)
 
     top_calories.sort(reverse=True) 
-    return top_calories
+    return top_calories[0:3]
 
 
 if __name__ == "__main__":
