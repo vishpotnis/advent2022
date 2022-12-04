@@ -3,7 +3,7 @@ import sys
 def main():
     
     if len(sys.argv) == 1:
-        input_fname = "day2_input2.txt"
+        input_fname = "day3_input2.txt"
     else:
         input_fname = sys.argv[1]
 
