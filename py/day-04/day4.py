@@ -21,11 +21,11 @@ def main():
     print(f"Num full overlap sections: {num_full_overlap}")
     print(f"Num overlap sections: {num_overlap}")
    
-def check_section_full_overlap(section):
-    return section[0][0] >= section[1][0] and section[0][1] <= section[1][1] or  section[1][0] >= section[0][0] and section[1][1] <= section[0][1]
+def check_section_full_overlap(s):
+    return s[0][0] >= s[1][0] and s[0][1] <= s[1][1] or  s[1][0] >= s[0][0] and s[1][1] <= s[0][1]
 
-def check_section_overlap(section):
-    return section[1][0] <= section[0][1] and section[1][1] >= section[0][0]
+def check_section_overlap(s):
+    return s[1][0] <= s[0][1] and s[1][1] >= s[0][0]
 
 
 
