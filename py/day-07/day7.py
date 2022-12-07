@@ -25,16 +25,14 @@ class Node:
         string += f"is_dir: {self.is_dir}\n"
         return string
 
-def calc_size(node):
-    calc_size_helper(node) 
 
-def calc_size_helper(node):
+def calc_size(node):
     if not node.is_dir:
         return node.size
 
     size = 0
     for child in node.children:
-        size += calc_size_helper(child)
+        size += calc_size(child)
 
     node.size = size
     return size
