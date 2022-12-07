@@ -30,30 +30,27 @@ def main():
             print(f"Delete directory with size {dir_size} to make room")
             break
 
-   
+
 def read_input(input_fname):
 
     with open(input_fname) as f:
         lines = f.read().splitlines()
 
     dir_sizes = []
-    stack = []
-    i = 0
-    while i < len(lines):
-        cmd = lines[i].split()
+    stack = []    
+    for line in lines:
+        cmd = line.split()
         if cmd[0] == "$" and cmd[1] == "cd" and cmd[2] == "..":
             pop_stack_dir(stack, dir_sizes)
         elif cmd[0] == "$" and cmd[1] == "cd":
             stack.append('d')
         elif cmd[0] not in ("$", "dir"):
             stack.append(int(cmd[0]))
-        i += 1
     
     while len(stack) > 1:
         pop_stack_dir(stack, dir_sizes)
 
     return dir_sizes, stack[0]
-
 
 
 def pop_stack_dir(stack, dir_sizes):
