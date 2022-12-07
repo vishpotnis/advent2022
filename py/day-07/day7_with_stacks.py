@@ -37,7 +37,7 @@ def read_input(input_fname):
         lines = f.read().splitlines()
 
     dir_sizes = []
-    stack = []    
+    stack = []
     for line in lines:
         cmd = line.split()
         if cmd[0] == "$" and cmd[1] == "cd" and cmd[2] == "..":
