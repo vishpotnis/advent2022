@@ -54,11 +54,7 @@ def get_unique_tail_coords(directions, rope_length):
 
 def is_point_adj(head, tail):
     return abs(head.x - tail.x) <= 1 and abs(head.y - tail.y) <= 1
-    del_y = abs(head.y - tail.y)
 
-    if del_x > 1 or del_y > 1:
-        return False
-    return True
 
 def move_rope(head, tail):
     tail.x += (head.x > tail.x) - (head.x < tail.x)
