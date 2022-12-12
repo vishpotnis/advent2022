@@ -8,19 +8,18 @@ def main():
 
     start_pos = get_pos(grid, 'S')[0]
     end_pos = get_pos(grid, 'E')[0]
-    a_pos = get_pos(grid, 'a')
 
     grid[start_pos[0]][start_pos[1]] = 'a'
     grid[end_pos[0]][end_pos[1]] = 'z'
 
-    steps = BFS_search(grid, start_pos, end_pos)
+    steps = BFS_search(grid, start_pos, end_pos, climb=True)
     print(f"P1 Total steps: {steps}")
 
-    all_steps = [BFS_search(grid, start_pos, end_pos) for start_pos in a_pos]
-    print(f"P2 Total steps: {min([x for x in all_steps if x is not None])}")
+    steps = BFS_search(grid, start_pos=end_pos, end_pos=None, climb=False)
+    print(f"P2 Total steps: {steps}")
 
 
-def BFS_search(grid, start_pos, end_pos):
+def BFS_search(grid, start_pos, end_pos, climb=True):
 
     q = [start_pos]
     steps = -1
@@ -31,14 +30,18 @@ def BFS_search(grid, start_pos, end_pos):
         steps += 1
         for _ in range(size):
             curr_pos = q.pop(0)
-            if curr_pos == end_pos:
+            if climb and curr_pos == end_pos:
+                return steps
+            elif not climb and grid[curr_pos[0]][curr_pos[1]] == 'a':
                 return steps
             
             adj_pos_vec = get_adjacent(grid, curr_pos)
             for adj_pos in adj_pos_vec:
-                if adj_pos not in visited and ord(grid[adj_pos[0]][adj_pos[1]]) - ord(grid[curr_pos[0]][curr_pos[1]]) <= 1:
-                    visited.add(adj_pos)
-                    q.append(adj_pos)
+                if adj_pos not in visited:
+                    if climb and ord(grid[adj_pos[0]][adj_pos[1]]) - ord(grid[curr_pos[0]][curr_pos[1]]) <= 1 or \
+                       not climb and ord(grid[adj_pos[0]][adj_pos[1]]) - ord(grid[curr_pos[0]][curr_pos[1]]) >= -1:
+                        visited.add(adj_pos)
+                        q.append(adj_pos)
 
 
 def get_adjacent(grid, pos):
