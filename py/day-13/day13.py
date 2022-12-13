@@ -24,7 +24,7 @@ def read_input(input_fname):
 
 def compare_func(pkt1, pkt2):
     if compare_packets(pkt1, pkt2): return -1
-    elif compare_packets(pkt1, pkt2): return 1
+    elif not compare_packets(pkt1, pkt2): return 1
     else: return 0
 
 def compare_packets(pkt1, pkt2):
